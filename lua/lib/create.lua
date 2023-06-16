@@ -17,7 +17,7 @@ M.get_open_command = function()
     return error('Could not find executable for ' .. rayso.config.open_cmd)
   end
 
-  return M.config.open_cmd
+  return rayso.config.open_cmd
 end
 
 -- Creates the snippet
@@ -61,7 +61,7 @@ M.create_snippet = function(opts)
 
   if opts.args ~= '' then
     query_params = param_util.generate_query_params()
-    url = M.config.base_url .. '' .. opts.args .. '' .. query_params
+    url = rayso.config.base_url .. '' .. opts.args .. '' .. query_params
 
     -- Get the whole files text as a string
     --- get the current buffer
@@ -77,7 +77,7 @@ M.create_snippet = function(opts)
   require('lib.file').log(url, code, param_util.assignLang(vim.bo.filetype))
 
   ---@type string
-  local quation = nil
+  local quation = "'"
   if vim.fn.has 'macunix'==1 then
     quation = "'"
   elseif vim.fn.has 'win32'==1 then
